@@ -284,7 +284,13 @@ a:hover {
 }
 
 #bloc-1-hero h1 {
+    background: #303030;
+    padding: 15px;
+    border-radius: 30px;
     font-size: 32px;
+    width: 350px;
+    margin-left:auto;
+    margin-right: auto;
 }
 
 .navbar {
@@ -753,9 +759,10 @@ h4 {
 }
 
 .black-background {
-    background-color: rgba(165, 147, 99, 0.7);
+    background-color: #303030;
     padding: 40px 40px 40px 40px;
 }
+
 
 .bold-link {
     font-weight: 900;
@@ -780,7 +787,7 @@ h4 {
 
 .btn-atomic-tangerine {
     background: #F3976C;
-    color: #FFFFFF!important;
+    color: #303030!important;
 }
 
 .btn-atomic-tangerine:hover {
@@ -1039,4 +1046,17 @@ h4 {
     .bloc-mob-center-text {
         text-align: center;
     }
+}
+
+.bg-black {
+    background: #303030;
+    border-radius: 30px;
+    margin-right:auto;
+    margin-left: auto;
+    padding:15px;
+    width: 500px;
+}
+
+.black {
+    color: #303030;
 }
