@@ -1040,3 +1040,31 @@ h4 {
         text-align: center;
     }
 }
+
+.bloc-2-titre {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+blockquote {
+    border: none;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.quote {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.references {
+    font-size: .8em;
+}
+
+.bloc-4-titre {
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
