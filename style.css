@@ -1058,9 +1058,9 @@ h4 {
 }
 
 .black {
-    color: #303030;
+    color: black;
 }
 
-.bold {
+/* .bold {
     font-weight: bold;
-}
+} */
