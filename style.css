@@ -1058,7 +1058,7 @@ h4 {
 }
 
 .black {
-    color: black;
+    color: black !important;
 }
 
 /* .bold {
