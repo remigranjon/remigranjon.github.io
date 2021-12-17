@@ -339,11 +339,6 @@ a:hover {
     text-align: inherit;
 }
 
-.nav > li a:hover,
-.nav > li a:focus {
-    /* font-weight: 600; */
-    /* background: transparent; */
-}
 
 .navbar-toggle {
     margin: 10px 10px 0 0;
@@ -1066,3 +1061,30 @@ h4 {
 /* .bold {
     font-weight: bold;
 } */
+.bloc-2-titre {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+blockquote {
+    border: none;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.quote {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.references {
+    font-size: .8em;
+}
+
+.bloc-4-titre {
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
