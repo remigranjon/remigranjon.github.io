@@ -1,0 +1,19 @@
+{
+    "modules" : [
+        {
+            "name":"Module Test Sortie",
+            "input" : [
+                {
+                    "name":"entrée test",
+                    "link":"Module1"
+                }
+            ],
+            "output" : [
+                {
+                    "name":"sortie test",
+                    "link":"None"
+                }
+            ]
+        }
+    ]
+}

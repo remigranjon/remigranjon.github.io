@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <nav>
+                <div class="menuFile">
+                    <div class="menuTitle">
+                        <img id="menuFileIcon" src="./icons/coloredArrow.svg" alt="colored arrow">
+                        <button>File</button>
+                    </div>
+                    <div class="menuFile__wrapped">
+                        <button class="menuOption" id="menuFile__Save">Save</button>
+                        <button class="menuOption" id="menuFile__SaveAs">Save As</button>
+                        <button class="menuOption" id="menuFile__Load">Load</button>
+                        <button class="menuOption" id="menuFile__NewModule">New Module</button>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <section class="main">
+            <!-- fenêtre d'importation des modules -->
+            <article class="import">
+                <div class="import__header">
+                    <h2>Modules à importer</h2>
+                                        
+                </div>
+                <!-- espace dans lequel est importé les différentes images des modules disponibles -->
+                <div id="import__repertory">
+
+                </div>
+            </article>
+            <!-- espace de travail -->
+            <article class="blueprint">
+
+            </article>
+        </section>
+    </div>
+    <script type="module" src="script.js"></script>
+    <script type="module" src="./Modules/repertory.js"></script> 
+    <script type="module" src="./Modules/functions/menu.js"></script> 
+    <script type="module" src="./Modules/functions/import.js"></script>  
+</body>
+
+</html>
