@@ -10,6 +10,14 @@ import { modulesToImport } from "../repertory.js"
 // Espace dans lequel sont affichés les modules à importer dans le projet
 const repertorySpace = document.getElementById("import__repertory")
 
+// -----------------------
+// Déclaration des classes
+// -----------------------
+// class Node {
+//     set()
+// }
+
+
 // -------------------------
 // Déclaration des fonctions
 // -------------------------
