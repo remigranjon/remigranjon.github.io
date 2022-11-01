@@ -95,6 +95,7 @@ function createNewModule(optionDiv,name) {
         newBlueprint.style.justifyContent = "center"; 
         newBlueprint.style.alignItems = "center";
         newBlueprint.style.opacity = "100%";
+        // newBlueprint.onclick = (event)=>console.log(event);
     },500)
 }
 

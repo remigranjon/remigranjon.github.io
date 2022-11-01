@@ -6,8 +6,9 @@ class Link {
     // moduleSide corresponds au côté du module par lequel part la flèche ou par lequel elle arrive
     // blueprintDiv est le div dans lequel est dessiné le module
     // imgs contient les images qui dessinent la flèche
+    // moduleId corresponds au nom du module auquel est lié le lien 
 
-    constructor(coord0,coord1,nodeType,direction,moduleSide,blueprintDiv) {
+    constructor(coord0,coord1,nodeType,direction,moduleSide,blueprintDiv,moduleId) {
         this.coord0 = coord0;
         this.coord1 = coord1;
         this.nodeType = nodeType;
@@ -15,6 +16,7 @@ class Link {
         this.moduleSide = moduleSide;
         this.blueprintDiv = blueprintDiv;
         this.imgs = []
+        this.moduleId = moduleId
     }
 
     // Fonction qui dessine la flèche sur le blueprintDiv
@@ -67,10 +69,10 @@ class Link {
 
 
 
-// // Fonction à relier au clic sur une node 
-// function toBindNodeClic(event) {
-//     const link = new Link(event)
-// }
+// Fonction à relier au clic sur une node 
+function toBindNodeClic(event) {
+    const link = new Link(event)
+}
 
 
 // // Fonction qui  
@@ -82,7 +84,7 @@ class Link {
 // Elle renvoie le côté le plus proche ainsi que les coordonnées du point d'attache au module.
 // On a également en paramètres les dimensions de l'image du module.
 function getNearestSide(posX,posY){
-    const heightModule = 200;
+    const heightModule = 149.05;
     const widthModule = 200;
     
     // Si posX est le minimum des 4 distances aux côtés du module, alors on retourne le côté "W" comme côté le plus proche
