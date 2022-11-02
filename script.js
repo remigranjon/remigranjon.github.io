@@ -6,8 +6,13 @@ import * as importModule from "./Modules/functions/import.js"
 // Déclaration des variables
 // -------------------------
 // liste des links existants
-let links = [];
-let nodes = [];
+// let links = [];
+// let nodes = [];
+// let modulesLinked = [];
+
+// -----------------------
+// Déclaration des classes
+// -----------------------
 
 
 

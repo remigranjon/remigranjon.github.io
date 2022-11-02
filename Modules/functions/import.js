@@ -1,4 +1,5 @@
-import { modulesToImport } from "../repertory.js"
+import { modulesToImport } from "../repertory.js";
+import { clickOnBlueprint, toBindNodeClic,modulesLinked } from "./blueprint.js";
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 // Module qui définit les fonctions nécessaires à l'import de modules existants au projet
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -10,12 +11,19 @@ import { modulesToImport } from "../repertory.js"
 // Espace dans lequel sont affichés les modules à importer dans le projet
 const repertorySpace = document.getElementById("import__repertory")
 
+
+
 // -----------------------
 // Déclaration des classes
 // -----------------------
-// class Node {
-//     set()
-// }
+class Module {
+    constructor (name,input,output,icon){
+        this.name = name;
+        this.input = input;
+        this.output = output;
+        this.icon = icon;
+    }
+}
 
 
 // -------------------------
@@ -39,6 +47,9 @@ function bindDragAndDropImportModule () {
 function dragAndDropImportModule(event) {
     for (let module of modulesToImport) {
         if (event.target.className.includes(`display${module.name}`)) {
+            const newModuleLinked = new Module(module.name,module.input,module.output,module.icon);
+            modulesLinked.push(newModuleLinked);
+            
             const iconModule = document.createElement("div");
             const iconImg = document.createElement("img");
             iconModule.appendChild(iconImg);
@@ -56,10 +67,10 @@ function dragAndDropImportModule(event) {
             nodeE.src = "./icons/circle.svg";
             nodeS.src = "./icons/circle.svg";
             nodeN.src = "./icons/circle.svg";
-            nodeW.setAttribute("class",`node ${module.name} nodeEmpty`);
-            nodeN.setAttribute("class",`node ${module.name} nodeEmpty`);
-            nodeS.setAttribute("class",`node ${module.name} nodeEmpty`);
-            nodeE.setAttribute("class",`node ${module.name} nodeEmpty`);
+            nodeW.setAttribute("class",`node ${module.name} nodeW`);
+            nodeN.setAttribute("class",`node ${module.name} nodeN`);
+            nodeS.setAttribute("class",`node ${module.name} nodeS`);
+            nodeE.setAttribute("class",`node ${module.name} nodeE`);
             nodeW.style.top = "25px";
             nodeW.style.left = "0px";
             nodeN.style.left = "25px";
@@ -67,6 +78,7 @@ function dragAndDropImportModule(event) {
             nodeS.style.left = "25px";
             nodeE.style.left = "50px";
             nodeE.style.top = "25px";
+            nodeN.onclick = toBindNodeClic;
             iconModule.appendChild(nodeW);
             iconModule.appendChild(nodeE);
             iconModule.appendChild(nodeS);
@@ -90,9 +102,11 @@ function dragImportModule(event) {
 function dropImportModule(event) {
     document.getElementById("iconToDrag").setAttribute("id","");
     document.getElementsByClassName("blueprint")[0].onmousemove = null;
+    document.getElementsByClassName("blueprint")[0].onclick = clickOnBlueprint;
 }
 
 export {
     displayModule,
-    bindDragAndDropImportModule
+    bindDragAndDropImportModule,
+    modulesLinked
 }

@@ -1,3 +1,6 @@
+import {clickOnBlueprint} from "./blueprint.js"
+
+
 // Module qui définit les fonctions nécessaires au fonctionnement de la barre de menu
 
 // -------------------------
@@ -95,7 +98,7 @@ function createNewModule(optionDiv,name) {
         newBlueprint.style.justifyContent = "center"; 
         newBlueprint.style.alignItems = "center";
         newBlueprint.style.opacity = "100%";
-        // newBlueprint.onclick = (event)=>console.log(event);
+        newBlueprint.onclick = clickOnBlueprint;
     },500)
 }
 
