@@ -82,13 +82,13 @@ function createNewModule(optionDiv,name) {
     document.getElementsByClassName("blueprint")[0].style.opacity = "0%"
 
     setTimeout(()=>{
-        document.getElementsByClassName("main")[0].removeChild(document.getElementsByClassName("blueprint")[0]);
+        document.getElementsByClassName("blueprintSpace")[0].removeChild(document.getElementsByClassName("blueprint")[0]);
         // création du nouveau div "blueprint" 
         const newBlueprint = document.createElement("div");
         newBlueprint.setAttribute("class","blueprint");
         newBlueprint.style.opacity = "0%";
         newBlueprint.style.transition = "all .5s ease-in-out";
-        document.getElementsByClassName("main")[0].appendChild(newBlueprint);
+        document.getElementsByClassName("blueprintSpace")[0].appendChild(newBlueprint);
         // ajout de l'image du module à définir
         const imgNewModule = document.createElement("img"); 
         imgNewModule.setAttribute("class",`mainModule ${name}`);

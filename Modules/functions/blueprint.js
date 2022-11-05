@@ -14,6 +14,8 @@ class Link {
     // blueprintDiv est le div dans lequel est dessiné le module
     // imgs contient les images qui dessinent la flèche
     // moduleId corresponds au nom du module auquel est lié le lien 
+    // dotSize correspond à la taille en pixel du point dans le svg dot.svg
+    // posBlueprint corresponds à la position du blueprint dans l'espace "body"
 
     constructor(coord0=[0,0],coord1=[0,0],nodeType="nodeN",direction="in",moduleSide="W",blueprintDiv=null,moduleId="") {
         this.coord0 = coord0;
@@ -24,6 +26,8 @@ class Link {
         this.blueprintDiv = blueprintDiv;
         this.imgs = []
         this.moduleId = moduleId
+        this.dotSize = 5;
+        this.posBlueprint = []
     }
     
     // Fonction qui dessine la flèche sur le blueprintDiv
@@ -36,21 +40,25 @@ class Link {
                 if (this.nodeType=="nodeN") {
                     // si la face d'arrivée est la face Ouest :
                     if (this.moduleSide=="W") {
-                        console.log("tests passed")
+                        // création du premier élément de ligne
                         const line1 = document.createElement("img");
                         line1.src = "./icons/dot.svg";
                         line1.style.position = "absolute";
-                        // line1.style.width = "1px";
                         line1.style.top=`${this.coord0[1]}px`;
                         line1.style.left=`${this.coord0[0]}px`;
-                        line1.style.transform = `scaleY(${(this.coord0[1]-this.coord1[1])/5}) translateY(${this.coord1[1]-this.coord0[1]}px)`;
-                        // console.log(line1.style.top);
-                        // line1.style.width = `${this.coord0[1]-this.coord1[1]}px`;
-                        console.log(line1.style.top);
-                        console.log(line1.style.left);
+                        line1.style.transform = `translateY(${(this.coord1[1]-this.coord0[1])/2}px) scaleY(${(this.coord0[1]-this.coord1[1])/this.dotSize}) `;
                         this.blueprintDiv.appendChild(line1);
                         this.imgs.push(line1);
-                        
+                        // création du second élément de ligne
+                        const line2 = document.createElement("img");
+                        line2.src = "./icons/dot.svg";
+                        line2.style.position = "absolute";
+                        line2.style.top = `${this.coord1[1]}px`;
+                        line2.style.left = `${this.coord0[0]}px`;
+                        // console.log("ceci est la coordonnée du clic"+this.coord0[0]);
+                        line2.style.transform = `translateX(${(this.coord1[0]-this.coord0[0])/2}px) scaleX(${(this.coord1[0]-this.coord0[1])/this.dotSize})`;
+                        this.blueprintDiv.appendChild(line2);
+                        this.imgs.push(line2);
                     }
                 }
             }
@@ -70,6 +78,7 @@ class Link {
         this.coord1 = [event.clientX,event.clientY];
         this.destroyArrow();
         this.displayArrow();
+        // console.log("ceci est la coordonnée du mouvement" + event.clientX);
     }
 }
 

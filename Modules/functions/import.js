@@ -56,6 +56,8 @@ function dragAndDropImportModule(event) {
             iconImg.src = module.icon;
             iconImg.setAttribute("class","imgModule");
             iconModule.style.position = "absolute";
+            iconModule.style.top = `${event.layerY+20}px`;
+            iconModule.style.left = `${event.layerX+20}px`;
             iconModule.setAttribute("id","iconToDrag");
             iconModule.setAttribute("class",`iconModule ${module.name}`);
             document.getElementsByClassName("blueprint")[0].appendChild(iconModule);
@@ -85,7 +87,7 @@ function dragAndDropImportModule(event) {
             iconModule.appendChild(nodeN);
 
 
-            document.getElementsByClassName("blueprint")[0].onmousemove = dragImportModule;
+            document.body.onmousemove = dragImportModule;
             document.getElementsByClassName("blueprint")[0].onclick = dropImportModule;
         }
     }
@@ -101,7 +103,7 @@ function dragImportModule(event) {
 // fonction de drop des modules à importer
 function dropImportModule(event) {
     document.getElementById("iconToDrag").setAttribute("id","");
-    document.getElementsByClassName("blueprint")[0].onmousemove = null;
+    document.body.onmousemove = null;
     document.getElementsByClassName("blueprint")[0].onclick = clickOnBlueprint;
 }
 
