@@ -55,8 +55,7 @@ class Link {
                         line2.style.position = "absolute";
                         line2.style.top = `${this.coord1[1]}px`;
                         line2.style.left = `${this.coord0[0]}px`;
-                        // console.log("ceci est la coordonnée du clic"+this.coord0[0]);
-                        line2.style.transform = `translateX(${(this.coord1[0]-this.coord0[0])/2}px) scaleX(${(this.coord1[0]-this.coord0[1])/this.dotSize})`;
+                        line2.style.transform = `translateX(${(this.coord1[0]-this.coord0[0])/2}px) scaleX(${(this.coord1[0]-this.coord0[0])/this.dotSize})`;
                         this.blueprintDiv.appendChild(line2);
                         this.imgs.push(line2);
                     }

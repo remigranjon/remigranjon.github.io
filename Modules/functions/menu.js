@@ -92,7 +92,7 @@ function createNewModule(optionDiv,name) {
         // ajout de l'image du module à définir
         const imgNewModule = document.createElement("img"); 
         imgNewModule.setAttribute("class",`mainModule ${name}`);
-        imgNewModule.src="../icons/mainModuleTest.svg";
+        imgNewModule.src="./icons/mainModuleTest.svg";
         newBlueprint.appendChild(imgNewModule);
         newBlueprint.style.display = "flex";
         newBlueprint.style.justifyContent = "center"; 
