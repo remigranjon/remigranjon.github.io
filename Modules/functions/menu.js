@@ -93,10 +93,13 @@ function createNewModule(optionDiv,name) {
         const imgNewModule = document.createElement("img"); 
         imgNewModule.setAttribute("class",`mainModule ${name}`);
         imgNewModule.src="./icons/mainModuleTest.svg";
+        imgNewModule.style.position = "absolute";
+        imgNewModule.style.top = "250px";
+        imgNewModule.style.left = "600px";
         newBlueprint.appendChild(imgNewModule);
-        newBlueprint.style.display = "flex";
-        newBlueprint.style.justifyContent = "center"; 
-        newBlueprint.style.alignItems = "center";
+        // newBlueprint.style.display = "flex";
+        // newBlueprint.style.justifyContent = "center"; 
+        // newBlueprint.style.alignItems = "center";
         newBlueprint.style.opacity = "100%";
         newBlueprint.onclick = clickOnBlueprint;
     },500)

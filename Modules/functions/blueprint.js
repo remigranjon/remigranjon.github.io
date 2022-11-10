@@ -55,7 +55,7 @@ class Link {
                         line2.style.position = "absolute";
                         line2.style.top = `${this.coord1[1]}px`;
                         line2.style.left = `${this.coord0[0]}px`;
-                        line2.style.transform = `translateX(${(this.coord1[0]-this.coord0[0])/2}px) scaleX(${(this.coord1[0]-this.coord0[0])/this.dotSize})`;
+                        line2.style.transform = `translateX(${(this.coord1[0]-this.coord0[0])/2-this.dotSize/2}px) scaleX(${(this.coord1[0]-this.coord0[0]-5)/this.dotSize})`;
                         this.blueprintDiv.appendChild(line2);
                         this.imgs.push(line2);
                     }
@@ -77,7 +77,77 @@ class Link {
         this.coord1 = [event.clientX,event.clientY];
         this.destroyArrow();
         this.displayArrow();
-        // console.log("ceci est la coordonnée du mouvement" + event.clientX);
+    }
+
+    // fonction à binder au clic sur le module lorsque l'on est en mode dessin de flèche
+    endArrow  = (event) => {
+        if (event.target.className.includes("mainModule")) {
+            // console.log("ok");
+            this.destroyArrow();
+            this.coord1 = getNearestSide(event.clientX,event.clientY)[1];
+            this.moduleSide = getNearestSide(event.clientX,event.clientY)[0];
+            console.log(this.moduleSide);
+            this.drawArrow();
+            document.getElementsByClassName("blueprint")[0].onclick = clickOnBlueprint;
+            document.getElementsByClassName("blueprint")[0].onmousemove = null;
+        }
+        
+
+    }
+
+    // fonction qui dessine une flèche connaissant le point de départ et le point d'arrivée
+    drawArrow () {
+        const minSizeLine = 10;
+        const arrowLength = 10;
+        const arrowWidth = 5;
+        // console.log(`${self.nodeType} ${self.moduleSide}`);
+        switch (this.nodeType) {
+            case "nodeN" : 
+                switch (this.moduleSide) {
+                    case "W" :
+                        console.log("ok");
+                        // si le point d'arrivée de la flèche est au dessus du premier élément de ligne vertical minimum
+                        if (this.coord1[1]<(this.coord0[1]-minSizeLine)) {
+                            console.log("ok");
+                            // création de l'élément de ligne vertical
+                            const line1 = document.createElement("img");
+                            line1.src = "./icons/dot.svg";
+                            line1.style.position = "absolute";
+                            line1.style.top = `${this.coord0[1]}px`;
+                            line1.style.left = `${this.coord0[0]}px`;
+                            line1.style.transform = `translateY(${(this.coord1[1]-this.coord0[1])/2}px) scaleY(${(this.coord1[1]-this.coord0[1])/this.dotSize})`;
+                            this.blueprintDiv.appendChild(line1);
+                            this.imgs.push(line1);
+                            // création de l'élément de ligne horizontal
+                            const line2 = document.createElement("img");
+                            line2.src = "./icons/dot.svg";
+                            line2.style.position = "absolute";
+                            line2.style.top = `${this.coord1[1]}px`;
+                            line2.style.left = `${this.coord0[0]-this.dotSize/2}px`;
+                            line2.style.transform = `translateX(${(this.coord1[0]-this.coord0[0])/2}px) scaleX(${(this.coord1[0]-this.coord0[0])/this.dotSize})`;
+                            this.blueprintDiv.appendChild(line2);
+                            this.imgs.push(line2);
+                            // création de la pointe de flèche 
+                            const arrow = document.createElement("img");
+                            arrow.src = "./icons/arrowRightSimple.svg";
+                            arrow.style.position = "absolute";
+                            // arrow.style.display =
+                            arrow.style.width = `${arrowLength}px`;
+                            arrow.style.height = `${arrowWidth}px`;
+                            arrow.style.top = `${this.coord1[1]-arrowWidth/2}px`
+                            arrow.style.left = `${this.coord1[0]-arrowLength}px`
+                            this.blueprintDiv.appendChild(arrow);
+                            this.imgs.push(arrow);
+
+                        }
+
+
+                }
+        }
+        // ajout des classes aux éléments de dessin de la flèche
+        for (let element of this.imgs) {
+            element.className = `link ${this.moduleId}`;
+        }
     }
 }
 
@@ -99,6 +169,8 @@ function toBindNodeClic(event) {
                 newLink.displayArrow();
                 document.getElementsByClassName("blueprint")[0].onmousemove = newLink.updateDisplay;
                 console.log(links);
+                // bind du clic sur le module
+                document.getElementsByClassName("blueprint")[0].onclick = newLink.endArrow; 
             }
         }
 
@@ -112,21 +184,23 @@ function toBindNodeClic(event) {
 function getNearestSide(posX,posY){
     const heightModule = 149.05;
     const widthModule = 200;
+    const modulePosX = 600;
+    const modulePosY = 250;
     
     // Si posX est le minimum des 4 distances aux côtés du module, alors on retourne le côté "W" comme côté le plus proche
     // et on donne les coordonnées du point de contact à l'image du module.
-    if (posX == Math.min(posX,posY,heightModule-posY,widthModule-posX)) {
-        return ["W",[0,posY]];
+    if ((posX-modulePosX) == Math.min((posX-modulePosX),(posY-modulePosY),heightModule-(posY-modulePosY),widthModule-(posX-modulePosX))) {
+        return ["W",[modulePosX,posY]];
     }
     // de même pour posY, heightModule-posY et widthModule-posX
-    else if (posY == Math.min(posX,posY,heightModule-posY,widthModule-posX)) {
-        return ["N",[posX,0]];
+    else if ((posY-modulePosY) == Math.min((posX-modulePosX),(posY-modulePosY),heightModule-(posY-modulePosY),widthModule-(posX-modulePosX))) {
+        return ["N",[posX,modulePosY]];
     }
-    else if (widthModule-posX == Math.min(posX,posY,heightModule-posY,widthModule-posX)) {
-        return ["E",[widthModule,posY]];
+    else if (widthModule-(posX-modulePosX) == Math.min((posX-modulePosX),(posY-modulePosY),heightModule-(posY-modulePosY),widthModule-(posX-modulePosX))) {
+        return ["E",[widthModule+modulePosX,posY]];
     }
-    else if (heightModule-posY == Math.min(posX,posY,heightModule-posY,widthModule-posX)) {
-        return ["S",[posX,heightModule]];
+    else if (heightModule-(posY-modulePosY) == Math.min((posX-modulePosX),(posY-modulePosY),heightModule-(posY-modulePosY),widthModule-(posX-modulePosX))) {
+        return ["S",[posX,heightModule+modulePosY]];
     }
        
 }
@@ -134,6 +208,9 @@ function getNearestSide(posX,posY){
 function clickOnBlueprint (event) {
     console.log(event);
 }
+
+
+
 
 
 export {Link, clickOnBlueprint, toBindNodeClic,modulesLinked,links};
