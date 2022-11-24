@@ -98,8 +98,8 @@ class Link {
     // fonction qui dessine une flèche connaissant le point de départ et le point d'arrivée
     drawArrow () {
         const minSizeLine = 10;
-        const arrowLength = 10;
-        const arrowWidth = 5;
+        const arrowLength = 20;
+        const arrowWidth = 20;
         // console.log(`${self.nodeType} ${self.moduleSide}`);
         switch (this.nodeType) {
             case "nodeN" : 
@@ -108,36 +108,41 @@ class Link {
                         console.log("ok");
                         // si le point d'arrivée de la flèche est au dessus du premier élément de ligne vertical minimum
                         if (this.coord1[1]<(this.coord0[1]-minSizeLine)) {
-                            console.log("ok");
-                            // création de l'élément de ligne vertical
-                            const line1 = document.createElement("img");
-                            line1.src = "./icons/dot.svg";
-                            line1.style.position = "absolute";
-                            line1.style.top = `${this.coord0[1]}px`;
-                            line1.style.left = `${this.coord0[0]}px`;
-                            line1.style.transform = `translateY(${(this.coord1[1]-this.coord0[1])/2}px) scaleY(${(this.coord1[1]-this.coord0[1])/this.dotSize})`;
-                            this.blueprintDiv.appendChild(line1);
-                            this.imgs.push(line1);
-                            // création de l'élément de ligne horizontal
-                            const line2 = document.createElement("img");
-                            line2.src = "./icons/dot.svg";
-                            line2.style.position = "absolute";
-                            line2.style.top = `${this.coord1[1]}px`;
-                            line2.style.left = `${this.coord0[0]-this.dotSize/2}px`;
-                            line2.style.transform = `translateX(${(this.coord1[0]-this.coord0[0])/2}px) scaleX(${(this.coord1[0]-this.coord0[0])/this.dotSize})`;
-                            this.blueprintDiv.appendChild(line2);
-                            this.imgs.push(line2);
-                            // création de la pointe de flèche 
                             const arrow = document.createElement("img");
-                            arrow.src = "./icons/arrowRightSimple.svg";
-                            arrow.style.position = "absolute";
-                            // arrow.style.display =
-                            arrow.style.width = `${arrowLength}px`;
-                            arrow.style.height = `${arrowWidth}px`;
-                            arrow.style.top = `${this.coord1[1]-arrowWidth/2}px`
-                            arrow.style.left = `${this.coord1[0]-arrowLength}px`
-                            this.blueprintDiv.appendChild(arrow);
-                            this.imgs.push(arrow);
+                            arrow.src = "./icons/empty.svg";
+                            
+                            
+                            
+                            // console.log("ok");
+                            // // création de l'élément de ligne vertical
+                            // const line1 = document.createElement("img");
+                            // line1.src = "./icons/dot.svg";
+                            // line1.style.position = "absolute";
+                            // line1.style.top = `${this.coord0[1]}px`;
+                            // line1.style.left = `${this.coord0[0]}px`;
+                            // line1.style.transform = `translateY(${(this.coord1[1]-this.coord0[1])/2}px) scaleY(${(this.coord1[1]-this.coord0[1])/this.dotSize})`;
+                            // this.blueprintDiv.appendChild(line1);
+                            // this.imgs.push(line1);
+                            // // création de l'élément de ligne horizontal
+                            // const line2 = document.createElement("img");
+                            // line2.src = "./icons/dot.svg";
+                            // line2.style.position = "absolute";
+                            // line2.style.top = `${this.coord1[1]}px`;
+                            // line2.style.left = `${this.coord0[0]-this.dotSize/2}px`;
+                            // line2.style.transform = `translateX(${(this.coord1[0]-this.coord0[0])/2}px) scaleX(${(this.coord1[0]-this.coord0[0])/this.dotSize})`;
+                            // this.blueprintDiv.appendChild(line2);
+                            // this.imgs.push(line2);
+                            // // création de la pointe de flèche 
+                            // const arrow = document.createElement("img");
+                            // arrow.src = "./icons/arrowRightSimple.svg";
+                            // arrow.style.position = "absolute";
+                            // // arrow.style.display =
+                            // arrow.style.width = `${arrowLength}px`;
+                            // arrow.style.height = `${arrowWidth}px`;
+                            // arrow.style.top = `${this.coord1[1]-arrowWidth/2+this.dotSize/2}px`
+                            // arrow.style.left = `${this.coord1[0]-arrowLength}px`
+                            // this.blueprintDiv.appendChild(arrow);
+                            // this.imgs.push(arrow);
 
                         }
 
