@@ -1,0 +1,22 @@
+{
+  "name": "modelingtool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/remigranjon/ModelingTool.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/remigranjon/ModelingTool/issues"
+  },
+  "homepage": "https://github.com/remigranjon/ModelingTool#readme",
+  "dependencies": {
+    "paper": "^0.12.17"
+  }
+}

@@ -13,7 +13,7 @@ export let modulesToImport = [
                 link: "None"
             }
         ],
-        icon : "./icons/moduleIconTest.svg"
+        icon : "./icons/twitter.png"
     },
     {
         name : "ModuleTestEntrée",
@@ -29,7 +29,7 @@ export let modulesToImport = [
                 link: "None"
             }
         ],
-        icon : "./icons/moduleIconTest.svg"
+        icon : "./icons/twitter.png"
     }
 
 ];

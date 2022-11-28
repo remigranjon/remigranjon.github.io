@@ -34,9 +34,17 @@ document.body.onclick = menu.wrapOrNo
 
 // Affichage des modules à importer
 for (let module of modulesToImport) {
-    importModule.displayModule(module)  
+    importModule.displayModule(module);  
 }
 
-// Binding de la fonction drag and drop lors de l'import des modules
-importModule.bindDragAndDropImportModule();
+window.onload = function() {
+    var canvas = document.getElementById("blueprint");
+    paper.setup(canvas);
+    // const project = new paper.Project();
+    
+    // Binding de la fonction drag and drop lors de l'import des modules
+    importModule.bindDragAndDropImportModule();
+
+}
+
 
