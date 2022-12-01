@@ -41,7 +41,7 @@ window.onload = function() {
     var canvas = document.getElementById("blueprint");
     paper.setup(canvas);
     // const project = new paper.Project();
-    
+    paper.view.draw();
     // Binding de la fonction drag and drop lors de l'import des modules
     importModule.bindDragAndDropImportModule();
 
