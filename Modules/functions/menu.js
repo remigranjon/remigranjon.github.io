@@ -77,42 +77,54 @@ function createNewModule(optionDiv,name) {
         document.getElementsByTagName("header")[0].removeChild(optionDiv);
     },500);
     
-    // Destruction de l'actuel div "blueprint"
-    document.getElementsByClassName("blueprint")[0].style.transition = "all .5s ease-in-out"
-    document.getElementsByClassName("blueprint")[0].style.opacity = "0%"
+    // Destruction de l'actuel canvas "blueprint"
+    document.getElementById("blueprint").style.transition = "all .5s ease-in-out"
+    document.getElementById("blueprint").style.opacity = "0%"
 
     setTimeout(()=>{
-        document.getElementsByClassName("blueprintSpace")[0].removeChild(document.getElementsByClassName("blueprint")[0]);
+        document.body.removeChild(document.getElementById("blueprint"));
+        // document.getElementsByClassName("blueprintSpace")[0].removeChild(document.getElementsByClassName("blueprint")[0]);
         // création du nouveau div "blueprint" 
-        const newBlueprint = document.createElement("div");
-        newBlueprint.setAttribute("class","blueprint");
-        newBlueprint.style.opacity = "0%";
-        newBlueprint.style.transition = "all .5s ease-in-out";
+        // const newBlueprint = document.createElement("div");
+        // newBlueprint.setAttribute("class","blueprint");
+        // newBlueprint.style.opacity = "0%";
+        // newBlueprint.style.transition = "all .5s ease-in-out";
         const canvas = document.createElement("canvas");
         canvas.setAttribute("id","blueprint");
-        canvas.setAttribute("resize","true");
+        // canvas.setAttribute("resize","true");
+        // canvas.style.width = `${window.width}px`;
+        // newBlueprint.appendChild(canvas);
+        document.body.appendChild(canvas);
         paper.setup(canvas);
-        paper.view.draw();
         // paper.view.viewSize = new paper.Size(window.width,600);
-        newBlueprint.appendChild(canvas);
-        document.getElementsByClassName("blueprintSpace")[0].appendChild(newBlueprint);
+        // document.getElementsByClassName("blueprintSpace")[0].appendChild(newBlueprint);
         // ajout de l'image du module à définir
         const imgNewModule = document.createElement("img");
-        imgNewModule.src = "./icons/puzzle.png";
-        imgNewModule.setAttribute("id","imgMainModule");
-        imgNewModule.setAttribute("class","mainModule");
-        document.body.appendChild(imgNewModule);
-        setTimeout(()=>{
-            const rasterNewModule = new paper.Raster();
+        imgNewModule.src = "./icons/halloween.png";
+        // imgNewModule.setAttribute("id","imgMainModule");
+        // imgNewModule.setAttribute("class","mainModule");
+        // newBlueprint.appendChild(imgNewModule);
+        imgNewModule.onload = ()=> {
+            
+            const rasterNewModule = new paper.Raster(imgNewModule);
+            // rasterNewModule.view.viewSize = [1000,600];
+            // rasterNewModule.setPosition(rasterNewModule.view.center);
             rasterNewModule.position = rasterNewModule.view.center;
-            rasterNewModule.image = imgNewModule;
-            setTimeout(()=>{
-                rasterNewModule.size = new paper.Size(30,30);
-            },1000)
-        },1000)
-        // imgNewModule.onload = () => {
-        //     const rasterNewModule = new paper.Raster();
-        //     rasterNewModule.position = rasterNewModule.view.center;
+            rasterNewModule.scale(200/rasterNewModule.width,200/rasterNewModule.height);
+            rasterNewModule.name = `mainModule`
+            // console.log(rasterNewModule.position);
+            paper.view.draw();
+            
+        }
+        // rasterNewModule.image = imgNewModule;
+        // rasterNewModule.size = new paper.Size(30,30);
+        // setTimeout(()=>{
+            //     setTimeout(()=>{
+                //     },1000)
+                // },1000)
+                // imgNewModule.onload = () => {
+                    //     const rasterNewModule = new paper.Raster();
+                    //     rasterNewModule.position = rasterNewModule.view.center;
         //     rasterNewModule.image = imgNewModule;
         //     rasterNewModule.onLoad = () => {
         //         rasterNewModule.size = new paper.Size(30,30);
@@ -125,8 +137,8 @@ function createNewModule(optionDiv,name) {
         //     //     // imgNewModule.size = new paper.Size([200,200]);
         //     // }
         // }
-        console.log(imgNewModule.width);
-        console.log(imgNewModule.height);
+        // console.log(imgNewModule.width);
+        // console.log(imgNewModule.height);
         // const imgBounds = new paper.Path.Rectangle(0,0,200,200);
         // // imgBounds.visible=false;
         // imgBounds.position = imgBounds.view.center;
@@ -146,8 +158,8 @@ function createNewModule(optionDiv,name) {
         // newBlueprint.style.display = "flex";
         // newBlueprint.style.justifyContent = "center"; 
         // newBlueprint.style.alignItems = "center";
-        newBlueprint.style.opacity = "100%";
-        newBlueprint.onclick = clickOnBlueprint;
+        // newBlueprint.style.opacity = "100%";
+        // newBlueprint.onclick = clickOnBlueprint;
     },500)
 }
 
