@@ -58,8 +58,10 @@ function dragAndDropImportModule(event) {
                 radius: 5,
                 strokeColor: "black",
                 fillColor: "white",
-                opacity: 0
+                opacity: 0,
+                name: module.name,
             });
+            nodeN.onClick = toBindNodeClic;
             const nodeS = nodeN.clone();
             const nodeE = nodeN.clone();
             const nodeW = nodeN.clone();
@@ -98,6 +100,10 @@ function dragAndDropImportModule(event) {
             group.position = [event.pageX+20,event.pageY+20];
             
             group.name = `iconToDrag icon${module.name}`;
+            nodeN.name += " nodeN";
+            nodeS.name += " nodeS";
+            nodeE.name += " nodeE";
+            nodeW.name += " nodeW";
  
             document.body.onmousemove = dragImportModule;
             document.getElementById("blueprint").onclick = dropImportModule;

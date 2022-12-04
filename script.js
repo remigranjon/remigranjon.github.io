@@ -1,6 +1,7 @@
 import { modulesToImport } from "./Modules/repertory.js"
 import * as menu from "./Modules/functions/menu.js"
 import * as importModule from "./Modules/functions/import.js"
+import * as blueprint from "./Modules/functions/blueprint.js"
 
 // -------------------------
 // Déclaration des variables
@@ -44,7 +45,7 @@ window.onload = function() {
     paper.view.draw();
     // Binding de la fonction drag and drop lors de l'import des modules
     importModule.bindDragAndDropImportModule();
-
+    // canvas.onclick = blueprint.toBindNodeClic();
 }
 
 
