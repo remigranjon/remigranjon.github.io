@@ -5,7 +5,7 @@
 }
 
 body {
-    height: 1100px;
+    height: 800px;
 }
 
 header {
@@ -128,6 +128,7 @@ nav {
     position: sticky;
     top: 70px;
     z-index: 10;
+    transition: all .5s ease-in-out;
     /* justify-content: start; */
 }
 

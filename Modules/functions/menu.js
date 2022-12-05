@@ -12,6 +12,8 @@ const wrappedFileMenu = document.getElementsByClassName("menuFile__wrapped")[0];
 const menuFileIcon = document.getElementById("menuFileIcon");
 // Bouton "New Module"
 const buttonNew = document.getElementById("menuFile__NewModule");
+// Div des éléments à importer
+const importModules = document.getElementsByClassName("import")[0];
 
 // --------------------------
 // Déclaration des fonctions 
@@ -19,16 +21,18 @@ const buttonNew = document.getElementById("menuFile__NewModule");
 
 // fonction de déroulage du menu
 function unwrapMenu(event) {
-    wrappedFileMenu.style.opacity = "100%"
-    wrappedFileMenu.style.height = "100px"
-    menuFileIcon.style.transform = "rotate(90deg)"
+    wrappedFileMenu.style.opacity = "100%";
+    wrappedFileMenu.style.height = "100px";
+    menuFileIcon.style.transform = "rotate(90deg)";
+    importModules.style.top = `${70 + 100}px` 
 }
 
 // fonction d'enroulage du menu
 function wrapMenu(event) {
-    wrappedFileMenu.style.opacity = "0%"
-    wrappedFileMenu.style.height = "0px"
-    menuFileIcon.style.transform = "rotate(0deg)"
+    wrappedFileMenu.style.opacity = "0%";
+    wrappedFileMenu.style.height = "0px";
+    menuFileIcon.style.transform = "rotate(0deg)";
+    importModules.style.top = "70px";
 }
 
 // fonction qui définit si un clic doit entrainer l'enroulage ou le déroulage du menu

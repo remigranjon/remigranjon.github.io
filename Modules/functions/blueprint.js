@@ -14,12 +14,7 @@ function getNearestSide(posX,posY) {
             const widthMainModule = 200;
             const mainModuleX = child.position["x"]-widthMainModule/2;
             const mainModuleY = child.position["y"]-heightMainModule/2;
-            // console.log(child.size,child.position);
-            // console.log(heightMainModule,widthMainModule,mainModuleX,mainModuleY);
-            // const heightMainModule = 149.05;
-            // const widthMainModule = 200;
-            // const mainModuleX = 600;
-            // const mainModuleY = 250;
+
             
             // Si posX est le minimum des 4 distances aux côtés du module, alors on retourne le côté "W" comme côté le plus proche
             // et on donne les coordonnées du point de contact à l'image du module.
@@ -69,7 +64,6 @@ class Link {
         this.blueprintDiv = blueprintDiv;
         this.imgs = []
         this.moduleId = moduleId
-        // this.dotSize = 5;
         this.minline = 15;
         this.posBlueprint = []
     }
@@ -82,13 +76,9 @@ class Link {
             if (this.nodeType=="nodeN") {
                 // si la face d'arrivée est la face Ouest :
                 if (this.moduleSide=="W") {
-                    // console.log("ok3");
-                    // console.log("coord0 "+ this.coord0+" coord1 "+this.coord1);
                     // si le point de départ + l'élément de ligne minimum est en dessous du point d'arrivée :
                     // if (this.coord0[1]-this.minline>this.coord1[1]) {
                     if (this.coord0[1]>this.coord1[1]) {
-                        // console.log("ok4");
-
                         // création de la flèche :
                         this.arrow = new paper.Path();
                         this.arrow.strokeColor = "black";
@@ -109,53 +99,16 @@ class Link {
         }
     }
     
-    // displayArrow () {
-        //     // si la flèche va de la node au module :
-        //     if (this.direction == "in") {
-            //         // si le point de départ est en dessous du point d'arrivée :
-            //         if (this.coord0[1]>this.coord1[1]) {
-                //             // si la node de départ est nodeN :
-                //             if (this.nodeType=="nodeN") {
-                    //                 // si la face d'arrivée est la face Ouest :
-    //                 if (this.moduleSide=="W") {
-        //                     // création du premier élément de ligne
-        //                     const line1 = document.createElement("img");
-        //                     line1.src = "./icons/dot.svg";
-        //                     line1.style.position = "absolute";
-        //                     line1.style.top=`${this.coord0[1]}px`;
-        //                     line1.style.left=`${this.coord0[0]}px`;
-        //                     line1.style.transform = `translateY(${(this.coord1[1]-this.coord0[1])/2}px) scaleY(${(this.coord0[1]-this.coord1[1])/this.dotSize}) `;
-        //                     this.blueprintDiv.appendChild(line1);
-        //                     this.imgs.push(line1);
-        //                     // création du second élément de ligne
-        //                     const line2 = document.createElement("img");
-    //                     line2.src = "./icons/dot.svg";
-    //                     line2.style.position = "absolute";
-    //                     line2.style.top = `${this.coord1[1]}px`;
-    //                     line2.style.left = `${this.coord0[0]}px`;
-    //                     line2.style.transform = `translateX(${(this.coord1[0]-this.coord0[0])/2-this.dotSize/2}px) scaleX(${(this.coord1[0]-this.coord0[0]-5)/this.dotSize})`;
-    //                     this.blueprintDiv.appendChild(line2);
-    //                     this.imgs.push(line2);
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-    
     // Fonction qui détruit la flèche
     
     destroyArrow = function() {
         if (this.arrow) {
             this.arrow.remove();
         }
-        // for (let element of this.imgs) {
-            //     element.remove();
-            // }
     }
     
     // Fonction qui met à jour la flèche (à relier au mouvement de la souris)
     updateDisplay = (event) => {
-        // console.log("coordonnées clients "+ event.clientX +" "+ event.clientY)
         this.coord1 = [event.layerX,event.layerY];
         this.destroyArrow();
         this.displayArrow();
@@ -176,15 +129,7 @@ class Link {
             }
             document.getElementById("blueprint").onclick = null;
             document.getElementById("blueprint").onmousemove = null;
-
-            
-            // if (event.target.className.includes("mainModule")) {
-                //     // console.log("ok");
-        //     this.destroyArrow();
-        //     // console.log(this.moduleSide);
-        // }
-        
-        
+       
     }
 
     // fonction qui dessine une flèche connaissant le point de départ et le point d'arrivée
@@ -192,12 +137,10 @@ class Link {
         const minSizeLine = 10;
         const arrowLength = 20;
         const arrowWidth = 20;
-        // console.log(`${self.nodeType} ${self.moduleSide}`);
         switch (this.nodeType) {
             case "nodeN" : 
                 switch (this.moduleSide) {
                     case "W" :
-                        // console.log("ok");
                         // si le point d'arrivée de la flèche est au dessus du premier élément de ligne vertical minimum
                         if (this.coord1[1]<(this.coord0[1]-minSizeLine)) {
                             const arrow = document.createElement("img");
