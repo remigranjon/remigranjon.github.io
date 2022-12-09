@@ -1,4 +1,7 @@
 // Module qui définit les fonctions nécessaires au fonctionnement de la barre de menu
+import { modulesToImport } from "../repertory.js";
+import * as mainModule from "./mainModule.js";
+import * as blueprint from "./blueprint.js";
 
 // -------------------------
 // Déclaration des variables
@@ -97,6 +100,8 @@ function createNewModule(optionDiv,name) {
         // ajout de l'image du module à définir
         const imgNewModule = document.createElement("img");
         imgNewModule.src = "./icons/halloween.png";
+        const newModule = new mainModule.ModuleExtended(name,"./icons/halloween.png")
+        modulesToImport.push(newModule);
         imgNewModule.onload = ()=> {
             
             // création du raster englobant l'image créée positionné au centre du canvas 
@@ -106,9 +111,11 @@ function createNewModule(optionDiv,name) {
             rasterNewModule.scale(200/rasterNewModule.width,200/rasterNewModule.height);
             // ajout d'un "name" pour identifier le raster et le module que l'on définit
             rasterNewModule.name = `mainModule ${name}`;
+            // binding de la fonction "double click"
+            rasterNewModule.onDoubleClick = blueprint.bindingDClick;
             // dessin de la vue
             paper.view.draw();
-            // modification de l'opacitée en transition
+            // modification de l'opacité en transition
             canvas.style.opacity = "100%";
         }
 

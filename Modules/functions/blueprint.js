@@ -1,3 +1,4 @@
+import { modulesToImport } from "../repertory.js";
 // Ensemble des modules importés sur l'espace de travail
 let modulesLinked = [];
 let links = [];
@@ -70,6 +71,7 @@ class Link {
     
     // Fonction qui dessine la flèche sur le blueprintDiv
     displayArrow () {
+        const minimumOffset = 20;
         // si la flèche va de la node au module : 
         if (this.direction == "in") {
             // si la node de départ est nodeN :
@@ -84,15 +86,46 @@ class Link {
                         this.arrow.strokeColor = "black";
                         this.arrow.strokeWidth = 5;
                         this.arrow.add(this.coord0);
-                        this.arrow.add([this.coord0[0],this.coord1[1]]);
-                        this.arrow.add([this.coord1[0]-20,this.coord1[1]]);
-                        // dessin de la tête de la flèche
-                        this.arrow.add([this.coord1[0]-20,this.coord1[1]-10]);
-                        this.arrow.add(this.coord1[0]-8,this.coord1[1]);
-                        this.arrow.add([this.coord1[0]-20,this.coord1[1]+10]);
-                        this.arrow.add([this.coord1[0]-20,this.coord1[1]]);
-                        this.arrow.name = `arrow ${this.moduleId}`
-                        paper.view.draw();
+                        // --------s'il y a la place de dessiner la flêche horizontale---------
+                        if (Math.abs(this.coord1[0]-this.coord0[0])>minimumOffset) {
+                            
+                            this.arrow.add([this.coord0[0],this.coord1[1]]);
+                            // --------si la tête est à droite de la flèche-------
+                            if (this.coord1[0]>=this.coord0[0]) {
+                                this.arrow.add([this.coord1[0]-minimumOffset,this.coord1[1]]);
+                                // dessin de la tête de la flèche
+                                this.arrow.add([this.coord1[0]-minimumOffset,this.coord1[1]-10]);
+                                this.arrow.add(this.coord1[0]-8,this.coord1[1]);
+                                this.arrow.add([this.coord1[0]-minimumOffset,this.coord1[1]+10]);
+                                this.arrow.add([this.coord1[0]-minimumOffset,this.coord1[1]]);
+                                this.arrow.name = `arrow ${this.moduleId}`
+                                paper.view.draw();
+                            }
+                            // ---------si la tête est à gauche de la flèche-------
+                            else {
+                                this.arrow.add([this.coord1[0]+minimumOffset,this.coord1[1]]);
+                                // dessin de la tête de la flèche
+                                this.arrow.add([this.coord1[0]+minimumOffset,this.coord1[1]-10]);
+                                this.arrow.add(this.coord1[0]+8,this.coord1[1]);
+                                this.arrow.add([this.coord1[0]+minimumOffset,this.coord1[1]+10]);
+                                this.arrow.add([this.coord1[0]+minimumOffset,this.coord1[1]]);
+                                this.arrow.name = `arrow ${this.moduleId}`
+                                paper.view.draw();
+                            }
+                        }
+
+                        // ------s'il n'y a pas la place de dessiner la flèche horizontale------
+                        else {
+                            this.arrow.add([this.coord0[0],this.coord1[1]+minimumOffset]);
+                            // dessin de la tête de la flèche
+                            this.arrow.add([this.coord0[0]-10,this.coord1[1]+minimumOffset]);
+                            this.arrow.add(this.coord0[0],this.coord1[1]+8);
+                            this.arrow.add([this.coord0[0]+10,this.coord1[1]+minimumOffset]);
+                            this.arrow.add([this.coord0[0],this.coord1[1]+minimumOffset]);
+                            this.arrow.name = `arrow ${this.moduleId}`
+                            paper.view.draw();
+                        }
+
                     }
                 }
             }
@@ -232,9 +265,19 @@ function clickOnBlueprint (event) {
     console.log(event);
 }
 
+// fonction à binder en cas de double click sur le module principal : affichage d'un div permettant le paramétrage du module principal
+function bindingDClick (event) {
+    // si l'élément doubleclické est le module principal
+    if (event.target.name.includes("mainModule")) {
+        // en cas d'édition d'un module existant
+        for (let module of modulesToImport) {
+            if (event.target.name.includes(module.name)) {
+                module.displayModule();
+            }
+        }
+    }
+}
 
 
 
-
-
-export {Link, clickOnBlueprint, toBindNodeClic,modulesLinked,links};
+export {Link, clickOnBlueprint, toBindNodeClic,modulesLinked,links,bindingDClick};

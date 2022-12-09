@@ -1,13 +1,13 @@
 export let modulesToImport = [
     {
         name : "ModuleTestSortie",
-        input : [
+        inputs : [
             {
                 name : "entrée test",
                 link : "Module1"
             }
         ],
-        output : [
+        outputs : [
             {
                 name : "output test",
                 link: "None"
@@ -17,13 +17,13 @@ export let modulesToImport = [
     },
     {
         name : "ModuleTestEntrée",
-        input : [
+        inputs : [
             {
                 name : "entrée test",
                 link : "Module1"
             }
         ],
-        output : [
+        outputs : [
             {
                 name : "output test",
                 link: "None"
