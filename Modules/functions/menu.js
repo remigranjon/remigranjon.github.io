@@ -18,6 +18,8 @@ const buttonNew = document.getElementById("menuFile__NewModule");
 // Div des éléments à importer
 const importModules = document.getElementsByClassName("import")[0];
 
+
+
 // --------------------------
 // Déclaration des fonctions 
 // --------------------------
@@ -96,11 +98,11 @@ function createNewModule(optionDiv,name) {
 
         // Mise en place du projet paper.js relié au canvas
         paper.setup(canvas);
-
+        // création d'une instance de module à définir
+        const newModule = new mainModule.ModuleExtended(name,"./icons/halloween.png")
         // ajout de l'image du module à définir
         const imgNewModule = document.createElement("img");
-        imgNewModule.src = "./icons/halloween.png";
-        const newModule = new mainModule.ModuleExtended(name,"./icons/halloween.png")
+        imgNewModule.src = newModule.icon;
         modulesToImport.push(newModule);
         imgNewModule.onload = ()=> {
             

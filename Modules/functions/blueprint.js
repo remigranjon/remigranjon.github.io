@@ -1,4 +1,5 @@
 import { modulesToImport } from "../repertory.js";
+import * as frames from "../frames.js";
 // Ensemble des modules importés sur l'espace de travail
 let modulesLinked = [];
 let links = [];
@@ -272,7 +273,10 @@ function bindingDClick (event) {
         // en cas d'édition d'un module existant
         for (let module of modulesToImport) {
             if (event.target.name.includes(module.name)) {
-                module.displayModule();
+                const newModuleFrame = new frames.Frame("module",module);
+                // module.displayModule();
+                newModuleFrame.display();
+                frames.frames.push(newModuleFrame);
             }
         }
     }
