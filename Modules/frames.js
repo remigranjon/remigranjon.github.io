@@ -4,6 +4,7 @@ class Frame {
     constructor (type,module=null) {
         this.type = type;
         this.module = module;
+        this.parametersDivs = [];
     }
     display () {
         if (this.type=="module") {
@@ -14,117 +15,179 @@ class Frame {
             this.titleDiv.innerHTML=`<h2>${this.module.name}</h2>`;
             this.titleDiv.setAttribute("class","mainModule__title")
             this.frame.appendChild(this.titleDiv);
-            // ------------------------------------------------------
-            // ----------Ajout du div contenant les inputs-----------
-            // ------------------------------------------------------
-            this.inputsDiv = document.createElement("div");
-            this.inputsDiv.setAttribute("class","mainModule__inputs");
-            this.frame.appendChild(this.inputsDiv);
-            this.inputsDiv__title = document.createElement("h3");
-            this.inputsDiv__title.innerHTML = "Inputs";
-            this.inputsDiv.appendChild(this.inputsDiv__title);
-
-            this.inputsDiv__ul = document.createElement("ul");
-            this.inputsDiv.appendChild(this.inputsDiv__ul);
-
-            this.inputsDiv__addDiv = document.createElement("div");
-            this.inputsDiv.appendChild(this.inputsDiv__addDiv);
-            this.inputsDiv__addDiv__input = document.createElement("input");
-            this.inputsDiv__addDiv__input.type="text";
-            this.inputsDiv__addDiv.appendChild(this.inputsDiv__addDiv__input);
-            this.inputsDiv__addDiv__button = document.createElement("button");
-            this.inputsDiv__addDiv__button.innerHTML = "Add";
-            // Binding du bouton "Ajouter"
-            this.inputsDiv__addDiv__button.onclick = (event)=>{
-                // Ajout d'une ligne à l'ul correspondants
-                const line = document.createElement("li");
-                this.inputsDiv__ul.appendChild(line);
-                // Ajout d'un <p> contenant le nom de l'input
-                const inputName = this.inputsDiv__addDiv__input.value;
-                const inputText = document.createElement("p");
-                inputText.innerHTML = inputName;
-                line.appendChild(inputText);
-                // Ajout d'un bouton "remove" permettant de supprimer l'input
-                const removeButton = document.createElement("button");
-                removeButton.innerHTML = "Remove";
-                removeButton.onclick = (event) => {
-                    // suppression de l'input des inputs du module
-                    for (let input of this.module.inputs) {
-                        if (input.name == inputName) {
-                            input = null;
-                        } 
-                    }
-                    // suppression de la ligne affichée
-                    line.remove();
-                }
-                line.appendChild(removeButton);
-                // Ajout d'un bouton "update" qui permet la modification des données de la variable
-                const updateButton = document.createElement("button");
-                updateButton.innerHTML = "Update";
-                line.appendChild(updateButton);
-                // Ajout d'une variable de type "input" aux inputs du module
-                this.module.inputs.push(new mainModule.Variable("input",inputName));
-            }
-            this.inputsDiv__addDiv.appendChild(this.inputsDiv__addDiv__button);
             document.body.appendChild(this.frame);
-            // ------------------------------------------------------
-            // ----------Ajout du div contenant les outputs-----------
-            // ------------------------------------------------------
-            this.outputsDiv = document.createElement("div");
-            this.outputsDiv.setAttribute("class","mainModule__outputs");
-            this.frame.appendChild(this.outputsDiv);
-            this.outputsDiv__title = document.createElement("h3");
-            this.outputsDiv__title.innerHTML = "Outputs";
-            this.outputsDiv.appendChild(this.outputsDiv__title);
-
-            this.outputsDiv__ul = document.createElement("ul");
-            this.outputsDiv.appendChild(this.outputsDiv__ul);
-
-            this.outputsDiv__addDiv = document.createElement("div");
-            this.outputsDiv.appendChild(this.outputsDiv__addDiv);
-            this.outputsDiv__addDiv__input = document.createElement("input");
-            this.outputsDiv__addDiv__input.type="text";
-            this.outputsDiv__addDiv.appendChild(this.outputsDiv__addDiv__input);
-            this.outputsDiv__addDiv__button = document.createElement("button");
-            this.outputsDiv__addDiv__button.innerHTML = "Add";
-            // Binding du bouton "Ajouter"
-            this.outputsDiv__addDiv__button.onclick = (event)=>{
-                // Ajout d'une ligne à l'ul correspondants
-                const line = document.createElement("li");
-                this.outputsDiv__ul.appendChild(line);
-                // Ajout d'un <p> contenant le nom de l'input
-                const inputName = this.outputsDiv__addDiv__input.value;
-                const inputText = document.createElement("p");
-                inputText.innerHTML = inputName;
-                line.appendChild(inputText);
-                // Ajout d'un bouton "remove" permettant de supprimer l'input
-                const removeButton = document.createElement("button");
-                removeButton.innerHTML = "Remove";
-                removeButton.onclick = (event) => {
-                    // suppression de l'input des inputs du module
-                    for (let output of this.module.outputs) {
-                        if (output.name == inputName) {
-                            output = null;
-                        } 
-                    }
-                    // suppression de la ligne affichée
-                    line.remove();
-                }
-                line.appendChild(removeButton);
-                // Ajout d'un bouton "update" qui permet la modification des données de la variable
-                const updateButton = document.createElement("button");
-                updateButton.innerHTML = "Update";
-                line.appendChild(updateButton);
-                // Ajout d'une variable de type "input" aux inputs du module
-                this.module.inputs.push(new mainModule.Variable("input",inputName));
-            }
-            this.outputsDiv__addDiv.appendChild(this.outputsDiv__addDiv__button);
-            // changement de l'opacitée de la frame après .5s
+            // Ajout du div contenant les inputs
+            createParameterDiv(this.frame,"input",this.module);
+            // Ajout du div contenant les outputs
+            createParameterDiv(this.frame,"output",this.module);
+            // Ajout du div contenant les intrinsics
+            createParameterDiv(this.frame,"intrinsic",this.module);
+            // Ajout du div contenant les integrations
+            createParameterDiv(this.frame,"integration",this.module);
+            // Ajout du div contenant les constants
+            createParameterDiv(this.frame,"constant",this.module);
+            // Ajout du div contenant les internals
+            createParameterDiv(this.frame,"internal",this.module);
+            // changement de l'opacitée du frame après .5s
             setTimeout(()=>{
                 this.frame.style.opacity = "100%";
-            },500);
+            },200);
         }
     }
+}
+
+// fonction qui crée un div en fonction du type de paramètre
+function createParameterDiv (frame,type,module) {
+    console.log(type);
+    // création du div 
+    const div = document.createElement("div");
+    // Allocation des classes au div en fonction du type de paramètre
+    switch (type) {
+        case ("input") :
+            div.setAttribute("class","mainModule__inputs");
+            break;
+        case ("output"):
+            div.setAttribute("class","mainModule__outputs");
+            break;
+        case ("intrinsic"):
+            div.setAttribute("class","mainModule__intrinsics");
+            break;
+        case ("integration"):
+            div.setAttribute("class","mainModule__integrations");
+            break;
+        case ("constant"):
+            div.setAttribute("class","mainModule__constants");
+            break;
+        case ("internal"):
+            div.setAttribute("class","mainModule__internals");
+            break;
+
+    }
+    frame.appendChild(div);
+    // création du titre et allocation en fonction du type de paramètre
+    const div__title = document.createElement("h3");
+    switch (type) {
+        case ("input"):
+            div__title.innerHTML="Inputs";
+            break;
+        case ("output"):
+            div__title.innerHTML="Outputs";
+            break;
+        case ("intrinsic"):
+            div__title.innerHTML="Intrinsics";
+            break;
+        case ("integration"):
+            div__title.innerHTML="Integrations";
+            break;
+        case ("constant"):
+            div__title.innerHTML="Constants";
+            break;
+        case ("internal"):
+            div__title.innerHTML="Internals";
+            break;
+    };
+    div.appendChild(div__title);
+    // création de l'ul dans lequel sont listés les instances de paramètres
+    const div__ul = document.createElement("ul");
+    div.appendChild(div__ul);
+    // création du div avec pour fonction l'ajout d'une nouvelle instance de paramètre
+    const div__addDiv = document.createElement("div");
+    div.appendChild(div__addDiv);
+    const div__addDiv__input = document.createElement("input");
+    div__addDiv__input.type="text";
+    div__addDiv.appendChild(div__addDiv__input);
+    const div__addDiv__button = document.createElement("button");
+    div__addDiv__button.innerHTML = "Add";
+    // Binding du bouton "Ajouter"
+    div__addDiv__button.onclick = (event)=>{
+        // Ajout d'une ligne à l'ul correspondants
+        const line = document.createElement("li");
+        div__ul.appendChild(line);
+        // Ajout d'un <p> contenant le nom de l'input
+        const paramName = div__addDiv__input.value;
+        const paramText = document.createElement("p");
+        paramText.innerHTML = paramName;
+        line.appendChild(paramText);
+        // Ajout d'un bouton "remove" permettant de supprimer l'input
+        const removeButton = document.createElement("button");
+        removeButton.innerHTML = "Remove";
+        removeButton.onclick = (event) => {
+            // suppression du paramètre de la liste du module en fonction du type de paramètre
+            switch(type) {
+                case ("input"):
+                    for (let param of module.inputs) {
+                        if (param.name == paramName) {
+                            param = null;
+                        } 
+                    }
+                    break;
+                case ("output"):
+                    for (let param of module.outputs) {
+                        if (param.name == paramName) {
+                            param = null;
+                        } 
+                    }
+                    break;
+                case ("intrinsic"):
+                    for (let param of module.intrinsics) {
+                        if (param.name == paramName) {
+                            param = null;
+                        } 
+                    }
+                    break;
+                case ("integration"):
+                    for (let param of module.integrations) {
+                        if (param.name == paramName) {
+                            param = null;
+                        } 
+                    }
+                    break;
+                case ("constant"):
+                    for (let param of module.constants) {
+                        if (param.name == paramName) {
+                            param = null;
+                        } 
+                    }
+                    break;
+                case ("internal"):
+                    for (let param of module.internals) {
+                        if (param.name == paramName) {
+                            param = null;
+                        } 
+                    }
+                    break;
+            }
+            // suppression de la ligne affichée
+            line.remove();
+        }
+        line.appendChild(removeButton);
+        // Ajout d'un bouton "update" qui permet la modification des données de la variable
+        const updateButton = document.createElement("button");
+        updateButton.innerHTML = "Update";
+        line.appendChild(updateButton);
+        // Ajout de la variable à la liste du module en fonction de son type
+        switch (type) {
+            case ("input") :
+                module.inputs.push(new mainModule.Variable("input",paramName));
+                break;
+            case ("output") :
+                module.outputs.push(new mainModule.Variable("input",paramName));
+                break;
+            case ("intrinsic") :
+                module.intrinsics.push(new mainModule.Variable("input",paramName));
+                break;
+            case ("integration") :
+                module.integrations.push(new mainModule.Variable("input",paramName));
+                break;
+            case ("constant") :
+                module.constants.push(new mainModule.Variable("input",paramName));
+                break;
+            case ("internal") :
+                module.internals.push(new mainModule.Variable("input",paramName));
+                break;
+        }
+    }
+    div__addDiv.appendChild(div__addDiv__button);
 }
 
 let frames = [];
