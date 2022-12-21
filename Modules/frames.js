@@ -1,10 +1,11 @@
 import * as mainModule from "./functions/mainModule.js";
 
 class Frame {
-    constructor (type,module=null) {
+    constructor (type,module=null,variable=null) {
         this.type = type;
         this.module = module;
         this.parametersDivs = [];
+        this.variable = variable;
     }
     display () {
         if (this.type=="module") {
@@ -33,7 +34,17 @@ class Frame {
                 this.frame.style.opacity = "100%";
             },200);
         }
+        else if (this.type=="variable") {
+            this.frame = document.createElement("div");
+            this.frame.setAttribute("class","variableFrame");
+
+        }
     }
+}
+
+// fonction qui ajoute une ligne en fonction du nom de la variable
+function createVariableLine (variableName,ul) {
+
 }
 
 // fonction qui crée un div en fonction du type de paramètre
@@ -92,6 +103,7 @@ function createParameterDiv (frame,type,module) {
     div.appendChild(div__ul);
     // création du div avec pour fonction l'ajout d'une nouvelle instance de paramètre
     const div__addDiv = document.createElement("div");
+    div__addDiv.setAttribute("class","addVariable");
     div.appendChild(div__addDiv);
     const div__addDiv__input = document.createElement("input");
     div__addDiv__input.type="text";
