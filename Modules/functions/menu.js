@@ -8,7 +8,7 @@ import * as blueprint from "./blueprint.js";
 // -------------------------
 
 // Bouton "File" 
-const button = document.getElementsByClassName("menuTitle")[0].getElementsByTagName("button")[0];
+const button = document.getElementsByClassName("menuTitle")[0];
 // Menu à dérouler sous le bouton "File"
 const wrappedFileMenu = document.getElementsByClassName("menuFile__wrapped")[0];
 // Flèche symbolisant le menu "File"
@@ -28,7 +28,7 @@ const importModules = document.getElementsByClassName("import")[0];
 function unwrapMenu(event) {
     wrappedFileMenu.style.opacity = "100%";
     wrappedFileMenu.style.height = "100px";
-    menuFileIcon.style.transform = "rotate(90deg)";
+    // menuFileIcon.style.transform = "rotate(90deg)";
     importModules.style.top = `${70 + 100}px` 
 }
 
@@ -36,7 +36,7 @@ function unwrapMenu(event) {
 function wrapMenu(event) {
     wrappedFileMenu.style.opacity = "0%";
     wrappedFileMenu.style.height = "0px";
-    menuFileIcon.style.transform = "rotate(0deg)";
+    // menuFileIcon.style.transform = "rotate(0deg)";
     importModules.style.top = "70px";
 }
 
@@ -99,7 +99,7 @@ function createNewModule(optionDiv,name) {
         // Mise en place du projet paper.js relié au canvas
         paper.setup(canvas);
         // création d'une instance de module à définir
-        const newModule = new mainModule.ModuleExtended(name,"./icons/halloween.png")
+        const newModule = new mainModule.ModuleExtended(name,"./icons/diode.png")
         // ajout de l'image du module à définir
         const imgNewModule = document.createElement("img");
         imgNewModule.src = newModule.icon;
@@ -110,7 +110,8 @@ function createNewModule(optionDiv,name) {
             // et redimensionné à 200x200px
             const rasterNewModule = new paper.Raster(imgNewModule);
             rasterNewModule.position = rasterNewModule.view.center;
-            rasterNewModule.scale(200/rasterNewModule.width,200/rasterNewModule.height);
+            rasterNewModule.size = new paper.Size(300,200);
+            // rasterNewModule.scale(200/rasterNewModule.width,200/rasterNewModule.height);
             // ajout d'un "name" pour identifier le raster et le module que l'on définit
             rasterNewModule.name = `mainModule ${name}`;
             // binding de la fonction "double click"

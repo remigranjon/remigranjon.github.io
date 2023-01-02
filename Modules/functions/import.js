@@ -52,7 +52,7 @@ function dragAndDropImportModule(event) {
             modulesLinked.push(newModuleLinked);
             
             const rasterIcon = new paper.Raster(module.icon);
-            rasterIcon.size = new paper.Size([30,30]);
+            rasterIcon.size = new paper.Size([60,60]);
             const nodeN = new paper.Shape.Circle({
                 center: [5,5],
                 radius: 5,
@@ -90,12 +90,12 @@ function dragAndDropImportModule(event) {
                 event.target.opacity = 0;
             }
             const group = new paper.Group([nodeN,nodeS,nodeE,nodeW,rasterIcon]);
-            group.size = [60,60];
-            nodeN.position = [30,5];
-            nodeS.position = [30,55];
-            nodeW.position = [5,30];
-            nodeE.position = [55,30];
-            rasterIcon.position = [30,30];
+            group.size = [80,80];
+            nodeN.position = [40,5];
+            nodeS.position = [40,75];
+            nodeW.position = [5,40];
+            nodeE.position = [75,40];
+            rasterIcon.position = [40,40];
             
             group.position = [event.pageX+20,event.pageY+20];
             

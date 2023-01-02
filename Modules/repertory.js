@@ -29,7 +29,7 @@ export let modulesToImport = [
                 link: "None"
             }
         ],
-        icon : "./icons/twitter.png"
+        icon : "./icons/resistance.png"
     }
 
 ];

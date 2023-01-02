@@ -13,7 +13,7 @@ function getNearestSide(posX,posY) {
         if (child.name.includes("mainModule")) {
             console.log("ok");
             const heightMainModule = 200;
-            const widthMainModule = 200;
+            const widthMainModule = 300;
             const mainModuleX = child.position["x"]-widthMainModule/2;
             const mainModuleY = child.position["y"]-heightMainModule/2;
 
@@ -84,7 +84,7 @@ class Link {
                     if (this.coord0[1]>this.coord1[1]) {
                         // création de la flèche :
                         this.arrow = new paper.Path();
-                        this.arrow.strokeColor = "black";
+                        this.arrow.strokeColor = "#1568f8";
                         this.arrow.strokeWidth = 5;
                         this.arrow.add(this.coord0);
                         // --------s'il y a la place de dessiner la flêche horizontale---------

@@ -1,3 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --borderColor : rgb(0, 123, 255);
+    --whiteish:rgb(197, 210, 215);
+    --darker:rgb(4, 38, 53);
+    --dark:rgb(34, 34, 100);
+    /* --bgColor: rgb(16, 71, 97); */
+    --bgColor: #020917;
+    --white: #ffffff;
+    --blue: #1568f8;
+}
+
 
 *{
     margin: 0px;
@@ -6,6 +20,8 @@
 
 body {
     height: 800px;
+    background-color: var(--bgColor);
+    font-family: "Montserrat";
 }
 
 header {
@@ -29,15 +45,20 @@ nav {
 }
 
 .menuTitle {
-    display: flex;
-    flex-direction: row;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 1.5rem;
+    height: 30px;
+    cursor: pointer;
+
 }
 
-#menuFileIcon {
-    height: 30px;
-    width: 30px;
+/* #menuFileIcon {
+    height: 20px;
+    width: 20px;
     transition: all .5s ease-in-out;
-}
+    fill:rgb(85, 10, 102);
+} */
 
 .menuFile__wrapped {
     display: flex;
@@ -45,6 +66,16 @@ nav {
     flex-direction: column;
     opacity: 0%;
     transition: all .5s ease-in-out;
+    gap:5px;
+}
+
+.menuFile__wrapped div {
+    width: 150px;
+    background-color: var(--darker);
+    border-radius: 0px;
+    color: var(--white);
+    cursor: pointer;
+    padding: 2px;
 }
 
 .moduleIcon{
@@ -52,9 +83,6 @@ nav {
     width: 30px;
 }
 
-.displayModuleContainer{
-    display: flex;
-}
 
 .iconModule {
     height : 60px;
@@ -193,11 +221,57 @@ nav {
     z-index: 10;
     transition: all .5s ease-in-out;
     /* justify-content: start; */
+    background-color: var(--darker);
+    padding: 10px;
+    /* border-radius: 5px; */
+    color:var(--white);
+    gap: 10px;
+    /* border-top: solid 3px var(--borderColor); */
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.import h2 {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.import h3 {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.displayModuleContainer{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 10px;
+    border-top: solid 1px var(--blue);
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+}
+
+.displayModuleContainer:hover{
+    background-color: var(--dark);
+}
+
+.displayModuleContainer img {
+    width: 40px;
+    height: 40px;
 }
 
 .import__header {
     flex-grow: 0;
 }
+
+/* .import img {
+    fill: rgb(197, 210, 215);
+} */
+
+
+
 
 canvas {
     width: 100%;
@@ -208,3 +282,24 @@ canvas {
     right: 0px;
 }
 
+.variableFrame {
+    background-color: white;
+    width: calc(100% - 200px);
+    min-height: 600px;
+    position: absolute;
+    top: 100px;
+    left: 200px;
+    opacity: 0%;
+    transition: all .5s ease-in-out;
+    z-index: 11;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.variableFrame div {
+    display: flex;
+    gap: 15px;
+}
