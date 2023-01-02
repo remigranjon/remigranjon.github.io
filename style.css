@@ -148,11 +148,12 @@ nav {
 
 
 .mainModule {
-    width: calc(100% - 200px);
+    /* width: calc(100% - 200px); */
+    width: 100%;
     min-height: 600px;
-    position: absolute;
+    position: sticky;
     top: 100px;
-    left: 200px;
+    /* left: 200px; */
     display: grid;
     grid-template-columns: repeat(3,1fr);
     grid-template-rows: repeat(4,1fr);
@@ -161,7 +162,8 @@ nav {
     align-items: center;
     opacity: 0%;
     transition: all .5s ease-in-out;
-    background-color: white;
+    background-color: var(--bgColor);
+    color: var(--white);
     z-index: 10;
 }
 
@@ -173,6 +175,11 @@ nav {
 .mainModule__inputs {
     grid-column: 2;
     grid-row: 1;
+    background-color: var(--darker);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .mainModule__intrinsics {
@@ -205,9 +212,41 @@ nav {
     gap: 10px;
 }
 
+.mainModule__add {
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
 .mainModule li {
     display: flex;
     gap: 10px;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    border-top: var(--blue) 1px solid;
+    padding-top: 5px;
+}
+
+.mainModule .paramLine__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.mainModule .paramLine__remove {
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--blue);
+    /* border-radius: 30px;
+    border: var(--blue) 2px solid;
+    padding: 0 5px; */
+    cursor: pointer;
+}
+
+.mainModule .paramLine__update img {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
 }
 
 .import {

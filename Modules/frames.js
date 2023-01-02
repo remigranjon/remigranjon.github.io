@@ -9,9 +9,10 @@ class Frame {
     }
     display () {
         if (this.type=="module") {
+            document.getElementsByClassName("import")[0].style.opacity = "0%";
             this.frame = document.createElement("div");
+            document.getElementsByClassName("frameContainer")[0].appendChild(this.frame);
             this.frame.setAttribute("class","mainModule");
-            document.body.appendChild(this.frame);
             // Ajout du div contenant le titre du module
             this.titleDiv = document.createElement("div");
             this.titleDiv.innerHTML=`<h2>${this.module.name}</h2>`;
@@ -21,7 +22,8 @@ class Frame {
             this.returnButton = document.createElement("button");
             this.returnButton.innerHTML = "Return";
             this.returnButton.onclick = (event) => {
-                document.body.removeChild(this.frame);
+                document.getElementsByClassName("frameContainer")[0].removeChild(this.frame);
+                document.getElementsByClassName("import")[0].style.opacity = "100%";
             }
             this.frame.appendChild(this.returnButton);
             // Ajout du div contenant les inputs
@@ -40,7 +42,7 @@ class Frame {
             updateParameterDivs(this.module);
             // changement de l'opacitée du frame après .5s
             setTimeout(()=>{
-                this.frame.style.opacity = "100%";
+                document.getElementsByClassName("mainModule")[0].style.opacity = "100%";
             },200);
         }
         else if (this.type=="variable") {
@@ -139,9 +141,14 @@ function createParameterLine (paramName,type,module) {
     const paramText = document.createElement("p");
     paramText.innerHTML = paramName;
     line.appendChild(paramText);
+    // Ajout d'un div contenant les boutons
+    const buttonsContainer = document.createElement("div");
+    buttonsContainer.setAttribute("class","paramLine__buttons");
+    line.appendChild(buttonsContainer);
     // Ajout d'un bouton "remove" permettant de supprimer l'input
-    const removeButton = document.createElement("button");
-    removeButton.innerHTML = "Remove";
+    const removeButton = document.createElement("div");
+    removeButton.setAttribute('class','paramLine__remove');
+    removeButton.innerHTML = "-";
     removeButton.onclick = (event) => {
         // suppression du paramètre de la liste du module en fonction du type de paramètre
         switch(type) {
@@ -192,10 +199,11 @@ function createParameterLine (paramName,type,module) {
         // suppression de la ligne affichée
         line.remove();
     }
-    line.appendChild(removeButton);
+    buttonsContainer.appendChild(removeButton);
     // Ajout d'un bouton "update" qui permet la modification des données de la variable
-    const updateButton = document.createElement("button");
-    updateButton.innerHTML = "Update";
+    const updateButton = document.createElement("div");
+    updateButton.setAttribute("class","paramLine__update");
+    updateButton.innerHTML = "<img src='../icons/update.svg'>";
     updateButton.onclick = (event)=>{
         for (let param of module[type+"s"]) {
             if (param.name==paramName) {
@@ -204,7 +212,7 @@ function createParameterLine (paramName,type,module) {
             }
         }
     }
-    line.appendChild(updateButton);
+    buttonsContainer.appendChild(updateButton);
 
 
 }
@@ -269,8 +277,9 @@ function createParameterDiv (frame,type,module) {
     const div__addDiv__input = document.createElement("input");
     div__addDiv__input.type="text";
     div__addDiv.appendChild(div__addDiv__input);
-    const div__addDiv__button = document.createElement("button");
-    div__addDiv__button.innerHTML = "Add";
+    const div__addDiv__button = document.createElement("div");
+    div__addDiv__button.setAttribute('class','mainModule__add');
+    div__addDiv__button.innerHTML = "+";
     // Binding du bouton "Ajouter"
     div__addDiv__button.onclick = (event)=>{
         const paramName = div__addDiv__input.value;
