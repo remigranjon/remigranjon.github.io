@@ -203,7 +203,7 @@ function createParameterLine (paramName,type,module) {
     // Ajout d'un bouton "update" qui permet la modification des données de la variable
     const updateButton = document.createElement("div");
     updateButton.setAttribute("class","paramLine__update");
-    updateButton.innerHTML = "<img src='../icons/update.svg'>";
+    updateButton.innerHTML = "<img src='./icons/update.svg'>";
     updateButton.onclick = (event)=>{
         for (let param of module[type+"s"]) {
             if (param.name==paramName) {
