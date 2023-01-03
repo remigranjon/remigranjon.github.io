@@ -19,8 +19,9 @@ class Frame {
             this.titleDiv.setAttribute("class","mainModule__title")
             this.frame.appendChild(this.titleDiv);
             // Ajout du boutton qui retourne à l'écran principal
-            this.returnButton = document.createElement("button");
-            this.returnButton.innerHTML = "Return";
+            this.returnButton = document.createElement("div");
+            this.returnButton.innerHTML = "<img src='./icons/return-down-back.svg'>";
+            this.returnButton.setAttribute("class","returnButton");
             this.returnButton.onclick = (event) => {
                 document.getElementsByClassName("frameContainer")[0].removeChild(this.frame);
                 document.getElementsByClassName("import")[0].style.opacity = "100%";
@@ -148,7 +149,7 @@ function createParameterLine (paramName,type,module) {
     // Ajout d'un bouton "remove" permettant de supprimer l'input
     const removeButton = document.createElement("div");
     removeButton.setAttribute('class','paramLine__remove');
-    removeButton.innerHTML = "-";
+    removeButton.innerHTML = "--";
     removeButton.onclick = (event) => {
         // suppression du paramètre de la liste du module en fonction du type de paramètre
         switch(type) {
@@ -203,7 +204,7 @@ function createParameterLine (paramName,type,module) {
     // Ajout d'un bouton "update" qui permet la modification des données de la variable
     const updateButton = document.createElement("div");
     updateButton.setAttribute("class","paramLine__update");
-    updateButton.innerHTML = "<img src='../icons/update.svg'>";
+    updateButton.innerHTML = "<img src='./icons/update.svg'>";
     updateButton.onclick = (event)=>{
         for (let param of module[type+"s"]) {
             if (param.name==paramName) {
@@ -224,22 +225,22 @@ function createParameterDiv (frame,type,module) {
     // Allocation des classes au div en fonction du type de paramètre
     switch (type) {
         case ("input") :
-            div.setAttribute("class","mainModule__inputs");
+            div.setAttribute("class","mainModule__inputs paramContainer");
             break;
         case ("output"):
-            div.setAttribute("class","mainModule__outputs");
+            div.setAttribute("class","mainModule__outputs paramContainer");
             break;
         case ("intrinsic"):
-            div.setAttribute("class","mainModule__intrinsics");
+            div.setAttribute("class","mainModule__intrinsics paramContainer");
             break;
         case ("integration"):
-            div.setAttribute("class","mainModule__integrations");
+            div.setAttribute("class","mainModule__integrations paramContainer");
             break;
         case ("constant"):
-            div.setAttribute("class","mainModule__constants");
+            div.setAttribute("class","mainModule__constants paramContainer");
             break;
         case ("internal"):
-            div.setAttribute("class","mainModule__internals");
+            div.setAttribute("class","mainModule__internals paramContainer");
             break;
 
     }
