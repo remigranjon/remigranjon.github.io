@@ -29,7 +29,7 @@ function unwrapMenu(event) {
     wrappedFileMenu.style.opacity = "100%";
     wrappedFileMenu.style.height = "100px";
     // menuFileIcon.style.transform = "rotate(90deg)";
-    importModules.style.top = `${70 + 100}px` 
+    importModules.style.top = `${70 + 130}px` 
 }
 
 // fonction d'enroulage du menu

@@ -2,14 +2,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
-    --borderColor : rgb(0, 123, 255);
-    --whiteish:rgb(197, 210, 215);
-    --darker:rgb(4, 38, 53);
-    --dark:rgb(34, 34, 100);
+    /* --borderColor : rgb(0, 123, 255); */
+    --borderColor: #3f4751;
+    /* --whiteish:rgb(197, 210, 215); */
+    --whiteish: #adbac7;
+    /* --darker:rgb(4, 38, 53); */
+    --darker:#22272e;
+    /* --dark:rgb(34, 34, 100); */
+    --dark: #2d333b;
     /* --bgColor: rgb(16, 71, 97); */
-    --bgColor: #020917;
+    /* --bgColor: #020917; */
+    --bgColor: #1c2128;
     --white: #ffffff;
     --blue: #1568f8;
+    --lightBlue: #539bf5;
 }
 
 
@@ -66,7 +72,7 @@ nav {
     flex-direction: column;
     opacity: 0%;
     transition: all .5s ease-in-out;
-    gap:5px;
+    /* gap:5px; */
 }
 
 .menuFile__wrapped div {
@@ -75,7 +81,12 @@ nav {
     border-radius: 0px;
     color: var(--white);
     cursor: pointer;
-    padding: 2px;
+    padding: 5px;
+    border-top: var(--borderColor) solid 1px;
+}
+
+.menuFile__wrapped div:hover {
+    background-color: var(--dark);
 }
 
 .moduleIcon{
@@ -137,7 +148,8 @@ nav {
     height: 0px;
     transition: all .5s ease-in-out;
     gap: 10px;
-    background-color: brown;
+    background-color: var(--dark);
+    color: var(--whiteish);
     z-index: 10;
 }
 
@@ -160,7 +172,7 @@ nav {
     grid-gap: 10px;
     justify-items: center;
     align-items: center;
-    opacity: 0%;
+    /* opacity: 0%; */
     transition: all .5s ease-in-out;
     background-color: var(--bgColor);
     color: var(--white);
@@ -283,17 +295,17 @@ nav {
     gap: 10px;
     /* border-top: solid 3px var(--borderColor); */
     font-weight: 600;
-    font-size: 1rem;
+    border: var(--borderColor) solid 1px;
 }
 
 .import h2 {
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .import h3 {
     font-weight: 500;
-    font-size: 1rem;
+    font-size: .75rem;
 }
 
 .displayModuleContainer{
@@ -303,7 +315,7 @@ nav {
     justify-content: space-between;
     padding-left: 20px;
     padding-right: 10px;
-    border-top: solid 1px var(--blue);
+    border-top: solid 1px var(--borderColor);
     transition: all .3s ease-in-out;
     cursor: pointer;
 }

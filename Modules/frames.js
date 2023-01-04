@@ -9,7 +9,7 @@ class Frame {
     }
     display () {
         if (this.type=="module") {
-            document.getElementsByClassName("import")[0].style.opacity = "0%";
+            document.getElementsByClassName("import")[0].style.display = "none";
             this.frame = document.createElement("div");
             document.getElementsByClassName("frameContainer")[0].appendChild(this.frame);
             this.frame.setAttribute("class","mainModule");
@@ -24,7 +24,7 @@ class Frame {
             this.returnButton.setAttribute("class","returnButton");
             this.returnButton.onclick = (event) => {
                 document.getElementsByClassName("frameContainer")[0].removeChild(this.frame);
-                document.getElementsByClassName("import")[0].style.opacity = "100%";
+                document.getElementsByClassName("import")[0].style.display = "flex";
             }
             this.frame.appendChild(this.returnButton);
             // Ajout du div contenant les inputs
