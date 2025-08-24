@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de Binario</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="generate.js" defer></script>
+
+</head>
+<body>
+    <h1>Bienvenue, n'hésitez pas à essayer ce générateur de Binario</h1>
+    <h2>Règles du Binario : </h2>
+    <ul>
+        <li>Le but est de remplir un tableau avec les chiffres 0 et 1.</li>
+        <li>Il ne peux pas y avoir deux 0 ou deux 1 consécutifs sur une ligne ou sur une colonne.</li>
+        <li>Le tableau doit être rempli de manière à ce que chaque ligne et chaque colonne contienne un nombre égal de 0 et de 1.</li>
+        <li>Chaque ligne et chaque colonne est unique</li>
+    </ul>
+    <h2>Plan de développement : </h2>
+    <ul>
+        <li class="done">Créer un formulaire pour sélectionner la taille du tableau (pair).</li>
+        <li class="done">Générer un tableau qui respecte les règles du Binario (sauf l'unicité ligne/colonne).</li>
+        <li>Enlever des chiffres à ce tableau.</li>
+        <li>Vérifier que le tableau soit solvable.</li>
+        <li>Itérer pour trouver un tableau solvable simple.</li>
+        <li>Ajouter une fonctionnalité pour vérifier la solution.</li>
+        <li>Ajouter la règle d'unicité pour les lignes et les colonnes.</li>
+    </ul>
+    <h2>Quelle est la taille du tableau que vous souhaitez générer : </h2>
+    <form>
+        <label for="size">Taille du tableau (pair) :</label>
+        <input type="number" id="size" name="size" min="6" step="2" required>
+        <button type="button" onclick="generateTable()">Générer</button>
+    </form>
+    <div id="tableContainer"></div>
+</body>
+</html>
